@@ -3,19 +3,37 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<head>
 		<title>Verlet Physics</title>
+		<link rel="stylesheet" href="VerletVisual.css">
 	</head>
-<body oncontextmenu="return false;">
+<body oncontextmenu="return false;" onload="initialize()">
 	<div id="verletPhysics">
-		<div id="canvas" style="display: flex">
-			<canvas id="myCanvas" style="border:2px solid"></canvas>
-			<script src="VerletVisual.js"></script>
+		<div id="canvas">
+			<canvas id="myCanvas"></canvas>
+		</div>
 		<div id="controls">
-			<button onclick="setupCloth()">Reset Simulation</button>
-			<input type="checkbox" onclick="toggleGravity()">Gravity</button>
+			<div id="buttons">
+				<button onclick="setupCloth()">Reset Simulation</button>
+			</div>
+			<br>
+			<div id="checkboxes">
+				<input type="checkbox" onclick="toggleGravity()">Gravity</input>
+				<input type="checkbox" onclick="toggleDrawPoints()">Draw Points</input>
+				<input type="checkbox" onclick="toggleDrawLines()" checked>Draw Lines</input>
+				<input type="checkbox" onclick="toggleDrawFire()" checked>Draw Fire</input>
+				<input type="checkbox" onclick="toggleFrozenCanThaw()">Frozen Can Thaw</input>
+				<br>
+				<input type="range" min="10" max = "25" value="10" id="gridScale" onchange="initialize()">Grid Scale</input>
+				<br>
+				<input type="range" min="5" max = "25" value="10">Grid Scale</input>
+				<br>
+				<input type="range" min="5" max = "25" value="10">Grid Scale</input>
+				<br>
+				<input type="range" min="5" max = "25" value="10">Grid Scale</input>				
+			</div>
 			<h5>Controls: Left Click to drag, Right Click to burn, Middle Click to toggle freeze</h5>
 			</h3>
 		</div>
-		</div>
 	</div>
+	<script src="VerletVisual.js"></script>
 </body>
 </html>

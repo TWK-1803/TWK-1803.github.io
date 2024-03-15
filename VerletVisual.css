@@ -1,0 +1,17 @@
+#verletPhysics{
+    display: flex;
+    width: 98vw;
+    height: 90vh;
+}
+
+#canvas{
+    width: 60%;
+    height: 100%;
+    border: 2px solid;
+}
+
+#controls{
+    margin-left: 5px;
+    width: 40%;
+    height: 100%;
+}
