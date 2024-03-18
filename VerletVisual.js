@@ -20,7 +20,7 @@ canvas.height = canvasDiv.clientHeight;
 var width = canvasDiv.clientWidth;
 var height = canvasDiv.clientHeight;
 
-var forces = [];
+var forces = [[0,0]];
 var points = [];
 var springs = [];
 var flameParticles = [];
@@ -41,6 +41,7 @@ var drawPoints = false;
 var drawLines = true;
 var drawFire = true;
 var gravityEnabled = false;
+var windEnabled = false;
 var frozenCanThaw = false;
 var mouseDown = false;
 
@@ -227,8 +228,12 @@ function toggleFrozen(mousePos) {
 }
 
 function toggleGravity(){
-    if(gravityEnabled) { forces.pop(); gravityEnabled = !gravityEnabled; }
-    else{ forces.push([0,1]); gravityEnabled = !gravityEnabled; }
+    if(gravityEnabled) { forces[0][1] = 0; gravityEnabled = !gravityEnabled; }
+    else{ forces[0][1] = 1; gravityEnabled = !gravityEnabled; }
+}
+function toggleWind(){
+    if(windEnabled) { forces[0][0] = 0; windEnabled = !windEnabled; }
+    else{ forces[0][0] = 1; windEnabled = !windEnabled; }
 }
 
 function toggleDrawPoints(){
@@ -411,19 +416,19 @@ function setupBall() {
     }
     points.push(temparr);
 
-    for(let i = 0; i < 8; i++){
+    for(let i = 0; i < 8; i++) {
         springs.push(new Spring(points[0][i], points[0][(i+1) % 8], distance(points[0][i], points[0][(i+1) % 8]), inputStiffness, inputStrainMult));
     }
 
-    for(let i = 0; i < 8; i++){
+    for(let i = 0; i < 8; i++) {
         springs.push(new Spring(points[0][i], points[0][(i+2) % 8], distance(points[0][i], points[0][(i+2) % 8]), inputStiffness, inputStrainMult));
     }
 
-    for(let i = 0; i < 8; i++){
+    for(let i = 0; i < 8; i++) {
         springs.push(new Spring(points[0][i], points[0][(i+3) % 8], distance(points[0][i], points[0][(i+3) % 8]), inputStiffness, inputStrainMult));
     }
 
-    for(let i = 0; i < 4; i++){
+    for(let i = 0; i < 4; i++) {
         springs.push(new Spring(points[0][i], points[0][i+4], distance(points[0][i], points[0][i+4]), inputStiffness, inputStrainMult));
     }
     
