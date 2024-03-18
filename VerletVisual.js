@@ -12,28 +12,27 @@ const MAXPARTICLESPAWNS = 3;
 
 var canvas = document.getElementById("myCanvas");
 var canvasDiv = document.getElementById("canvas");
-var gridScaleSlider = document.getElementById("gridScale");
 var ctx = canvas.getContext("2d");	
 canvas.focus();
-canvas.width = canvasDiv.scrollWidth;
-canvas.height = canvasDiv.scrollHeight;
+canvas.width = canvasDiv.clientWidth;
+canvas.height = canvasDiv.clientHeight;
 
-var width = canvasDiv.scrollWidth;
-var height = canvasDiv.scrollHeight;
+var width = canvasDiv.clientWidth;
+var height = canvasDiv.clientHeight;
 
 var forces = [];
 var points = [];
 var springs = [];
 var flameParticles = [];
 
-var burnSpreadChance = 0.07;
-var burnDestroyChance = 0.03;
-var thawChance = 0.05;
+var burnSpreadChance = document.getElementById("burnSpreadChance").value / 100;
+var burnDestroyChance = document.getElementById("burnDestroyChance").value / 100;
+var thawChance = document.getElementById("thawChance").value / 100;
+var inputStrainMult = document.getElementById("inputStrainMult").value;
+var inputStiffness = document.getElementById("inputStiffness").value / 100;
+var inputMass = document.getElementById("inputMass").value / 100;
+var inputElesticity = document.getElementById("inputElesticity").value / 100;
 var gridScale = document.getElementById("gridScale").value;
-var clothStrainMult = 99;
-var clothCompressability = 1;
-var clothMass = 0.05;
-var clothElesticity = 0.3;
 
 var gridWidth = Math.floor(width/gridScale);
 var gridHeight = Math.floor(height/gridScale);
@@ -108,13 +107,13 @@ class Mass{
 
 class Spring{
 
-    constructor(mass1, mass2, length, compressability = 1, maxstrainmult = 99){
+    constructor(mass1, mass2, length, stiffness = 1, maxstrainmult = 99){
         this.mass1 = mass1;
         this.mass2 = mass2;
         this.x = Math.floor((this.mass1.x + this.mass2.x)/2);
         this.y = Math.floor((this.mass1.y + this.mass2.y)/2);
         this.length = length;
-        this.compressability = compressability;
+        this.stiffness = stiffness;
         this.strained = false;
         this.maxstrainmult = maxstrainmult;
         this.burning = false;
@@ -146,8 +145,8 @@ class Spring{
             if(this.mass1.burning || this.mass2.burning) { this.burning = true; }
         }
         if(!this.strained) {    
-            let offsetx = dx * percent * this.compressability;
-            let offsety = dy * percent * this.compressability;
+            let offsetx = dx * percent * this.stiffness;
+            let offsety = dy * percent * this.stiffness;
 
             if(!this.mass1.frozen) {
                 this.mass1.x -= offsetx;
@@ -263,28 +262,16 @@ function endDrag() {
     selected = null;
 }
 
-function setupCloth() {
-    points = [];
-    springs = [];
-    for(let r = 1; r < gridHeight; r++){
-        let temparr = [];
-        for(let c = 1; c < gridWidth; c++){
-            temparr.push(new Mass(c*gridScale, r*gridScale, clothMass, clothElesticity, frozen = r==1));
-        }
-        points.push(temparr);
-    }
+function updateBurnSpreadChance() {
+    burnSpreadChance = document.getElementById("burnSpreadChance").value / 100;
+}
 
-    for(let r = 1; r < gridHeight - 1 ; r++){
-        for(let c = 0; c < gridWidth - 1; c++){
-            springs.push(new Spring(points[r][c], points[r-1][c], distance(points[r][c], points[r-1][c]), clothCompressability, clothStrainMult));
-        }
-    }
+function updateBurnDestroyChance() {
+    burnDestroyChance = document.getElementById("burnDestroyChance").value / 100;
+}
 
-    for(let c = 1; c < gridWidth - 1; c++){
-        for(let r = 0; r < gridHeight - 1; r++){
-            springs.push(new Spring(points[r][c], points[r][c-1], distance(points[r][c], points[r][c-1]), clothCompressability, clothStrainMult));
-        }
-    }
+function updateThawChance() {
+    thawChance = document.getElementById("thawChance").value / 100;
 }
 
 canvas.addEventListener('mousedown', event => {
@@ -301,6 +288,10 @@ canvas.addEventListener('mouseup', event => {
 
 canvas.addEventListener('mousemove', event => {
     drag(getMousePos(event));
+});
+
+window.addEventListener('resize', event => {
+    resetSim();
 });
 
 function simulate() {
@@ -364,9 +355,9 @@ function draw(){
                 let index = flameParticles.indexOf(particle);
                 flameParticles.splice(index, 1); 
             }
-            else{
+            else {
                 let color = RED;
-                if(particle[3] <= 2){ color = GRAY; }
+                if(particle[3] <= 2) { color = GRAY; }
                 else if(particle[3] <= 3) { color = YELLOW; }
                 else if(particle[3] <= 4) { color = ORANGE; }
 
@@ -384,20 +375,89 @@ function draw(){
     }
 }
 
+function setupCloth() {
+    points = [];
+    springs = [];
+    for(let r = 1; r < gridHeight; r++){
+        let temparr = [];
+        for(let c = 1; c < gridWidth; c++){
+            temparr.push(new Mass(c*gridScale, r*gridScale, inputMass, inputElesticity, frozen = r==1));
+        }
+        points.push(temparr);
+    }
+
+    for(let r = 1; r < gridHeight - 1 ; r++){
+        for(let c = 0; c < gridWidth - 1; c++){
+            springs.push(new Spring(points[r][c], points[r-1][c], distance(points[r][c], points[r-1][c]), inputStiffness, inputStrainMult));
+        }
+    }
+
+    for(let c = 1; c < gridWidth - 1; c++){
+        for(let r = 0; r < gridHeight - 1; r++){
+            springs.push(new Spring(points[r][c], points[r][c-1], distance(points[r][c], points[r][c-1]), inputStiffness, inputStrainMult));
+        }
+    }
+}
+
+function setupBall() {
+    points = [];
+    springs = [];
+    let temparr = [];
+    let x = Math.floor(width / 2);
+    let y = Math.floor(height / 2);
+    let r = 40;
+    for(let i = 1; i <=15; i+=2) {
+        temparr.push(new Mass(x+r*Math.cos(i*Math.PI/8), y-r*Math.sin(i*Math.PI/8), inputMass, inputElesticity, false));
+    }
+    points.push(temparr);
+
+    for(let i = 0; i < 8; i++){
+        springs.push(new Spring(points[0][i], points[0][(i+1) % 8], distance(points[0][i], points[0][(i+1) % 8]), inputStiffness, inputStrainMult));
+    }
+
+    for(let i = 0; i < 8; i++){
+        springs.push(new Spring(points[0][i], points[0][(i+2) % 8], distance(points[0][i], points[0][(i+2) % 8]), inputStiffness, inputStrainMult));
+    }
+
+    for(let i = 0; i < 8; i++){
+        springs.push(new Spring(points[0][i], points[0][(i+3) % 8], distance(points[0][i], points[0][(i+3) % 8]), inputStiffness, inputStrainMult));
+    }
+
+    for(let i = 0; i < 4; i++){
+        springs.push(new Spring(points[0][i], points[0][i+4], distance(points[0][i], points[0][i+4]), inputStiffness, inputStrainMult));
+    }
+    
+}
+
+function resetSim(){
+    canvas.width = canvasDiv.clientWidth;
+    canvas.height = canvasDiv.clientHeight;
+
+    width = canvasDiv.clientWidth;
+    height = canvasDiv.clientHeight;
+
+    inputStrainMult = document.getElementById("inputStrainMult").value;
+    inputStiffness = document.getElementById("inputStiffness").value / 100;
+    inputMass = document.getElementById("inputMass").value / 100;
+    inputElesticity = document.getElementById("inputElesticity").value / 100;
+    gridScale = document.getElementById("gridScale").value;
+    
+    gridWidth = Math.floor(width/gridScale);
+    gridHeight = Math.floor(height/gridScale);
+
+    if(document.getElementById("simType").value == "cloth") {
+        setupCloth();
+    }
+    else if(document.getElementById("simType").value == "ball") {
+        setupBall();
+    }
+}
+
 function updateSim() {
     draw();
     simulate();
     requestAnimationFrame(updateSim);
 }
 
-function initialize(){
-    gridScale = gridScaleSlider.value;
-    
-    gridWidth = Math.floor(width/gridScale);
-    gridHeight = Math.floor(height/gridScale);
-
-    setupCloth();
-}
-
-initialize();
+resetSim();
 updateSim();

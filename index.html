@@ -5,30 +5,44 @@
 		<title>Verlet Physics</title>
 		<link rel="stylesheet" href="VerletVisual.css">
 	</head>
-<body oncontextmenu="return false;" onload="initialize()">
+<body oncontextmenu="return false;" onload="resetSim()">
 	<div id="verletPhysics">
 		<div id="canvas">
 			<canvas id="myCanvas"></canvas>
 		</div>
 		<div id="controls">
 			<div id="buttons">
-				<button onclick="setupCloth()">Reset Simulation</button>
+				<button onclick="resetSim()">Reset</button>
+				<span></span>
+				<label for="simType">Simulation: </label>
+				<select id="simType" onchange="resetSim()">
+					<option value="cloth">Cloth</option>
+					<option value="ball">Ball</option>
+				</select>
 			</div>
 			<br>
 			<div id="checkboxes">
 				<input type="checkbox" onclick="toggleGravity()">Gravity</input>
 				<input type="checkbox" onclick="toggleDrawPoints()">Draw Points</input>
-				<input type="checkbox" onclick="toggleDrawLines()" checked>Draw Lines</input>
+				<input type="checkbox" onclick="toggleDrawLines()" checked>Draw Springs</input>
 				<input type="checkbox" onclick="toggleDrawFire()" checked>Draw Fire</input>
 				<input type="checkbox" onclick="toggleFrozenCanThaw()">Frozen Can Thaw</input>
 				<br>
-				<input type="range" min="10" max = "25" value="10" id="gridScale" onchange="initialize()">Grid Scale</input>
+				<input type="range" min="10" max = "25" value="10" id="gridScale" onchange="resetSim()">Grid Scale</input>
 				<br>
-				<input type="range" min="5" max = "25" value="10">Grid Scale</input>
+				<input type="range" min="0" max = "100" value="30" id="inputElesticity" onchange="resetSim()">Point Elesticity</input>
 				<br>
-				<input type="range" min="5" max = "25" value="10">Grid Scale</input>
+				<input type="range" min="1" max = "50" value="5" id="inputMass" onchange="resetSim()">Point Mass</input>	
 				<br>
-				<input type="range" min="5" max = "25" value="10">Grid Scale</input>				
+				<input type="range" min="2" max = "99" value="99" id="inputStrainMult" onchange="resetSim()">Spring Strain Limit</input>
+				<br>
+				<input type="range" min="10" max = "100" value="100" id="inputStiffness" onchange="resetSim()">Spring Stiffness</input>
+				<br>
+				<input type="range" min="0" max = "100" value="7" id="burnSpreadChance" onchange="updateBurnSpreadChance()">Fire Spread Chance</input>
+				<br>
+				<input type="range" min="0" max = "100" value="3" id="burnDestroyChance" onchange="updateBurnDestroyChance()">Fire Destruction Chance</input>
+				<br>
+				<input type="range" min="0" max = "100" value="5" id="thawChance" onchange="updateThawChance()">Frozen Thaw Chance</input>
 			</div>
 			<h5>Controls: Left Click to drag, Right Click to burn, Middle Click to toggle freeze</h5>
 			</h3>
