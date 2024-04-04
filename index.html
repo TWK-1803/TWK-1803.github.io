@@ -1,54 +1,81 @@
-<!DOCTYPE html>
-<html>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!DOCTYPE HTML>
+	<html>
 	<head>
-		<title>Verlet Physics</title>
-		<link rel="stylesheet" href="VerletVisual.css">
+		<title>Dimension by HTML5 UP</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 	</head>
-<body oncontextmenu="return false;" onload="resetSim()">
-	<div id="verletPhysics">
-		<div id="canvas">
-			<canvas id="myCanvas"></canvas>
-		</div>
-		<div id="controls">
-			<div id="buttons">
-				<button onclick="resetSim()">Reset</button>
-				<span></span>
-				<label for="simType">Simulation: </label>
-				<select id="simType" onchange="resetSim()">
-					<option value="cloth">Cloth</option>
-					<option value="ball">Ball</option>
-				</select>
+	<body class="is-preload">
+		<div id="wrapper">
+			<header id="header">
+				<div class="content">
+					<div class="inner">
+						<h1>Tyler's Projects</h1>
+						<p>A collection of small projects and toys made to explore various topics of interest I've had over the years.</p>
+					</div>
+				</div>
+				<nav>
+					<ul>
+						<li><a href="#work">Projects</a></li>
+						<li><a href="#motivation">Motivation</a></li>
+						<li><a href="#contact">Contact</a></li>
+						<!-- <li><a href="#elements">Elements</a></li> -->
+					</ul>
+				</nav>
+			</header>
+
+			<div id="main">
+				<article id="work">
+					<h2 class="major">Projects</h3>
+					<nav>
+						<ul>
+							<li><a href="assets/projects/verlet.html">24</a></li>
+							<li><a href="assets/projects/verlet.html">BF Interpreter</a></li>
+							<li><a href="assets/projects/verlet.html">Chaotic Attractors</a></li>
+							<li><a href="assets/projects/verlet.html">Connect 4 vs AI</a></li>
+							<li><a href="assets/projects/verlet.html">Conway's Game of Life</a></li>
+							<li><a href="assets/projects/verlet.html">GJK Collision Detection</a></li>
+							<li><a href="assets/projects/verlet.html">Graphics from scratch</a></li>
+							<li><a href="assets/projects/verlet.html">Image to ASCII</a></li>
+							<li><a href="assets/projects/verlet.html">Inverse Kinematics</a></li>
+							<li><a href="assets/projects/verlet.html">Marching Squares</a></li>
+							<li><a href="assets/projects/verlet.html">GJK Collision Detection</a></li>
+							<li><a href="assets/projects/verlet.html">Sierpinski's Triangle</a></li>
+							<li><a href="assets/projects/verlet.html">Splines</a></li>
+							<li><a href="assets/projects/verlet.html">Tic Tac Toe</a></li>
+							<li><a href="assets/projects/verlet.html">Verlet Physics</a></li>
+							<li><a href="assets/projects/verlet.html">Voronoi Diagrams</a></li>
+							<li><a href="assets/projects/verlet.html">Wave Function Collapse</a></li>
+						</ul>
+					</nav>
+				</article>
+				<article id="motivation">
+					<h2 class="major">Why did I make this?</h2>
+					<p>What you see here is a collection of the various toys and such I have made over time. Most were just made for fun or to mess with something I thought was interesting, but I think there's an important lesson to be found here - even if these are the most complete or impressive things I've built.</p>
+					<p>Ever since I started archiving these little side projects of mine I've come to realize that a lot of the parts of computer science I once thought impossible - the ones that awed me as a younger programmer - really aren't as unapproachable as they appear.</p>
+					<p>I made this because I want to impart a lesson I've had to have drilled into me over the years. I've wanted to mess with some of these topics for a long time, I just never felt like I could actually understand the research before. Even if I did understand what I was researching, I never thought I would have the ability to make something that would live up to the quality of other people's implementations.</p>
+					<p>If anyone sees this, especially if they're a newer programmer, take my advice: try to go a little beyond your depth on each project you do. Push yourself even when what you're reaching for feels beyond your reach.</p>
+					<p>Obviously, don't try to go straight for the truly impenetrable stuff right away, but don't be afraid to aim for what you think would be really hard to do. You'd be surprised just how much more you'll be able to do once you've gone through that struggle and prevailed. </p>
+				</article>
+				<article id="contact">
+					<h2 class="major">Contact</h2>
+					<ul class="icons">
+						<li><a href="#"><img src="images/linkedin-letters.svg"></a></li>
+						<li><a href="#"><img src="images/linkedin-letters.svg"></a></li>
+						<li><a href="#"><img src="images/linkedin-letters.svg"></a></li>
+						<li><a href="#"><img src="images/linkedin-letters.svg"></a></li>
+					</ul>
+				</article>
 			</div>
-			<br>
-			<div id="checkboxes">
-				<input type="checkbox" onclick="toggleGravity()">Gravity</input>
-				<input type="checkbox" onclick="toggleWind()">Wind</input>
-				<input type="checkbox" onclick="toggleDrawPoints()">Draw Points</input>
-				<input type="checkbox" onclick="toggleDrawLines()" checked>Draw Springs</input>
-				<input type="checkbox" onclick="toggleDrawFire()" checked>Draw Fire</input>
-				<input type="checkbox" onclick="toggleFrozenCanThaw()">Frozen Can Thaw</input>
-				<br>
-				<input type="range" min="10" max = "25" value="10" id="gridScale" onchange="resetSim()">Grid Scale</input>
-				<br>
-				<input type="range" min="0" max = "100" value="30" id="inputElesticity" onchange="resetSim()">Point Elesticity</input>
-				<br>
-				<input type="range" min="1" max = "50" value="5" id="inputMass" onchange="resetSim()">Point Mass</input>	
-				<br>
-				<input type="range" min="2" max = "99" value="99" id="inputStrainMult" onchange="resetSim()">Spring Strain Limit</input>
-				<br>
-				<input type="range" min="10" max = "100" value="100" id="inputStiffness" onchange="resetSim()">Spring Stiffness</input>
-				<br>
-				<input type="range" min="0" max = "100" value="7" id="burnSpreadChance" onchange="updateBurnSpreadChance()">Fire Spread Chance</input>
-				<br>
-				<input type="range" min="0" max = "100" value="3" id="burnDestroyChance" onchange="updateBurnDestroyChance()">Fire Destruction Chance</input>
-				<br>
-				<input type="range" min="0" max = "100" value="5" id="thawChance" onchange="updateThawChance()">Frozen Thaw Chance</input>
-			</div>
-			<h5>Controls: Left Click to drag, Right Click to burn, Middle Click to toggle freeze</h5>
-			</h3>
 		</div>
-	</div>
-	<script src="VerletVisual.js"></script>
-</body>
+
+		<script src="assets/js/jquery.min.js"></script>
+		<script src="assets/js/browser.min.js"></script>
+		<script src="assets/js/breakpoints.min.js"></script>
+		<script src="assets/js/util.js"></script>
+		<script src="assets/js/main.js"></script>
+
+	</body>
 </html>
