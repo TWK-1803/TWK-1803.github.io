@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<head>
+		<title>BF Interpreter</title>
+		<link rel="stylesheet" href="bfinterpreter.css">
+	</head>
+<body oncontextmenu="return false;">
+	<div id="bfinterpreter">
+		<div id="bfcode">
+            <input id="input" type="text" placeholder="Input Text Here"></input>
+            <br>
+            <br>
+			<textarea id="code" placeholder="Write Code Here"></textarea>
+            <br>
+            <textarea id="output" placeholder="Output Will Be Written Here"></textarea>
+		</div>
+		<div id="controls">
+            <button id="submit" onclick="runCode()">Run Code</button>
+            <br>
+            <br>
+			<h5>Note: This will allow you to run a program that doesn't terminate or output anything. Memory is a tape of 30000 looping cells, values cannot go below 0 and do not overflow to the maximum when subtracting, and calling input when there is none will store a 0</h5>
+			<button onclick="window.location.href='../../../index.html#work';">Back to Home</button>
+		</div>
+	</div>
+	<script src="bfinterpreter.js"></script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<head>
+		<title>Game of 24</title>
+		<link rel="stylesheet" href="24.css">
+	</head>
+<body oncontextmenu="return false;">
+	<div id="formulas">
+		<div id="output">
+			<textarea id="answers"></textarea>
+		</div>
+		<div id="controls">
+            <button id="submit" onclick="generateAnswers()">Generate Formulas</button>
+            <br>
+            <br>
+            <input id="factorials" type="checkbox" checked="true" onchange="factorialsAllowedChanged()"> Factorials Allowed</input>
+            <br>
+            <input id="goal" type="number" value=24 min=-9999 max=9999 onchange="goalChange()"> Goal Number</input>
+            <br>
+            <input id="maxNum" type="number" value=6 max=13 min=1 onchange="maxNumChange()"> Max Number</input>
+			<br>
+			<h5>Note: Including factorials only adds answers where the finished formula is surrounded by a factorial. Some answers may be marked impossible incorrectly.</h5>
+            <h5>Note: After pressing the Generate Answers button, wait until the text area is populated to modify input values or press the button again.</h5>
+			<button onclick="window.location.href='../../../index.html#work';">Back to Home</button>
+		</div>
+	</div>
+	<script src="24.js"></script>
+</body>
+</html>

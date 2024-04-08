@@ -1,0 +1,42 @@
+#bfinterpreter{
+    display: flex;
+    width: 98vw;
+    height: 90vh;
+}
+
+#bfcode{
+    width: 60%;
+    height: 100%;
+    border: 2px solid;
+}
+
+#input{
+    width: 99%;
+    height: 5%;
+    resize: none;
+}
+
+#code{
+    width: 99.3%;
+    height: 44.8%;
+    resize: none;   
+    overflow-y: scroll;
+}
+
+#output{
+    width: 99.3%;
+    height: 44.8%;
+    resize: none;   
+    overflow-y: scroll;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+#controls{
+    margin-left: 5px;
+    width: 40%;
+    height: 100%;
+}
