@@ -1,0 +1,34 @@
+#tictactoe{
+    display: flex;
+    width: 100%;
+}
+
+#game {
+    display: flex;
+    flex-wrap: wrap; 
+    width: 40%;
+    font-size: 100%;
+    text-align: center;
+}
+
+#game div {
+    width: 33%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 300%;
+}
+
+#game div:nth-child(odd) {
+    background-color: #bfbfbf;
+}
+
+#game div:nth-child(even) {
+    background-color: grey;
+}
+
+#controls{
+    width: 60%;
+    height: 100%;
+}

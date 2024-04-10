@@ -131,7 +131,6 @@ function getanswer(lst) {
 
 function generateAnswers() {
     textarea.value = "";
-    console.log("Clicked")
     for(let i = 1; i < maxNum + 1; i++) {
         for(let j = i; j < maxNum + 1; j++) {
             for(let k = j; k < maxNum + 1; k++) {
@@ -147,35 +146,37 @@ function goalChange() {
     t = document.getElementById("goal").value;
 
     if (t == ""){
-        t = 0;
+        goal = 0;
         document.getElementById("goal").value = 0;
     }
     else if (t < -9999){
-        t = -9999;
+        goal = -9999;
         document.getElementById("maxNum").value = -9999;
     }
 
     else if (t > 9999){
-        t = 9999;
+        goal = 9999;
         document.getElementById("goal").value = 9999;
     }
-
-    goal = t;
+    else{
+        goal = parseInt(t, 10);
+    }
 }
 
 function maxNumChange() {
     t = document.getElementById("maxNum").value;
 
     if (t == "" || t < 1){
-        t = 1;
+        maxNum = 1;
         document.getElementById("maxNum").value = 1;
     }
     else if (t > 13){
-        t = 13;
+        maxNum = 13;
         document.getElementById("maxNum").value = 13;
     }
-
-    maxNum = t;
+    else{
+        maxNum = parseInt(t, 10);
+    }
 }
 
 function factorialsAllowedChanged(){

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<head>
+		<title>BF Interpreter</title>
+		<link rel="stylesheet" href="tictactoe.css">
+	</head>
+<body oncontextmenu="return false;">
+	<div id="tictactoe">
+		<div id="game">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+		</div>
+		<div id="controls">
+            <button id="reset" onclick="resetGame()">Reset Game</button>
+            <br>
+            <input type="checkbox" checked="true" onchange="aiIsFirstChange()"> AI Plays First</input>
+            <br>
+            <p id="feedback"></p>
+            <br>
+			<h5>Note: This was created as an attempt to make something 'useful' using only if statements as the main decision making tool.</h5>
+			<button onclick="window.location.href='../../../index.html#work';">Back to Home</button>
+		</div>
+	</div>
+	<script src="tictactoe.js"></script>
+</body>
+</html>
