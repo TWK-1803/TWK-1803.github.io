@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<head>
+		<title>FABRIK</title>
+		<link rel="stylesheet" href="sierpinski.css">
+	</head>
+<body oncontextmenu="return false;">
+	<div id="sierpinski">
+		<div id="canvas">
+			<canvas id="myCanvas"></canvas>
+		</div>
+		<div id="controls">
+            <label for="simType">Type: </label>
+			<select id="simType" onchange="resetSim()">
+			    <option value="triangle">Triangle</option>
+				<option value="square">Square</option>
+                <option value="pentagon">Pentagon</option>
+			</select>
+            <br>
+            <input type="checkbox" id="doubleSelect" checked="true" onchange="resetSim()">Repeated Selection Allowed</input>
+            <br>
+            <input type="range" min="0.001" max = "0.999" step="0.001" value="0.5" id="r" onchange="resetSim()">R value</input>
+            <br>
+			<h5>Controls: Left Click to drag, Right Click to burn, Middle Click to toggle freeze</h5>
+			<button onclick="window.location.href='../../../index.html#work';">Back to Home</button>
+		</div>
+	</div>
+	<script src="sierpinski.js"></script>
+</body>
+</html>
