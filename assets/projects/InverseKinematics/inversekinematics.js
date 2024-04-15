@@ -165,7 +165,7 @@ function resetSim(){
 function draw() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    for (let i = 0; i < segment.joints; i++){
+    for (let i = 0; i < segment.joints.length; i++){
         ctx.beginPath();
         ctx.arc(joints[i].x, joints[i].y, 3, 0, Math.PI * 2);
         ctx.fillStyle = BLACK;
@@ -233,5 +233,6 @@ function update() {
     runFABRIK();
     requestAnimationFrame(update);
 }
+
 resetSim();
 update();
