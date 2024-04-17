@@ -3,8 +3,7 @@
 
 const canvas = document.getElementById("myCanvas");
 const canvasDiv = document.getElementById("canvas");
-const ctx = canvas.getContext("2d");	
-const slider = document.getElementById("numPoints");
+const ctx = canvas.getContext("2d");
 canvas.focus();
 canvas.width = canvasDiv.clientWidth;
 canvas.height = canvasDiv.clientHeight;
@@ -102,4 +101,3 @@ function draw() {
 
 resetSim();
 update();
-

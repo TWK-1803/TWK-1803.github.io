@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<head>
+		<title>FABRIK</title>
+		<link rel="stylesheet" href="chaos.css">
+	</head>
+<body oncontextmenu="return false;">
+	<div id="chaos">
+		<div id="canvas">
+			<canvas id="myCanvas"></canvas>
+		</div>
+		<div id="controls">
+            <label for="attractor">Attractor: </label>
+			<select id="attractor" onchange="resetSim()">
+			    <option value="lorenz">Lorenz</option>
+				<option value="thomas">Thomas</option>
+                <option value="aizawa">Aizawa</option>
+				<option value="dadras">Dadras</option>
+				<option value="chen">Chen</option>
+				<option value="rossler">Rossler</option>
+				<option value="halvorson">Halvorson</option>
+				<option value="rab_fab">Rab-fab</option>
+				<option value="tsucs">TSCUS</option>
+				<option value="fourwings">Four Wings</option>
+			</select>
+            <br>
+			<label for="axis">Axis: </label>
+			<select id="axis" onchange="resetSim()">
+			    <option value="XY">XY</option>
+				<option value="XZ">XZ</option>
+                <option value="YX">YX</option>
+				<option value="YZ">YZ</option>
+				<option value="ZX">ZX</option>
+				<option value="ZY">ZY</option>
+			</select>
+			<br>
+			<h5>Note: First letter in the axis mode is displayed along the x axis of the canvas, and the second is displayed along the y axis of the canvas</h5>
+			<button onclick="window.location.href='../../../index.html#work';">Back to Home</button>
+		</div>
+	</div>
+	<script src="chaos.js"></script>
+</body>
+</html>
