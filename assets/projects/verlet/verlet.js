@@ -178,6 +178,7 @@ function getMousePos(event){
     var y = event.clientY - rect.top; 
     return [x,y];
 }
+
 function startDrag(mousePos) {
     let endloop = false;
     let mousex = mousePos[0];

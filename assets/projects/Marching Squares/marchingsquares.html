@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<head>
+		<title>Marching Squares</title>
+		<link rel="stylesheet" href="marchingsquares.css">
+	</head>
+<body oncontextmenu="return false;">
+	<div id="marchingsquares">
+		<div id="canvas">
+			<canvas id="myCanvas"></canvas>
+		</div>
+		<div id="controls">
+            <button id="isrunningtoggle" onclick="toggleIsRunning()">Pause Simulation</button>
+            <br>
+            <input type="range" min="5" max = "50" step="5" value="10" id="gridsize" onchange="resetSim()">Grid Size</input>
+			<br>
+            <input type="range" min="0.5" max = "2.5" step="0.5" value="1" id="threshold" onchange="resetSim()">Activation Threshold</input>
+			<br>
+			<h5>Note: This is a slightly expanded implementation of the MetaBalls idea to work with any shape definable with an implicit function.</h5>
+			<button onclick="window.location.href='../../../index.html#work';">Back to Home</button>
+		</div>
+	</div>
+	<script src="marchingsquares.js"></script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<head>
+		<title>Splines</title>
+		<link rel="stylesheet" href="splines.css">
+	</head>
+<body oncontextmenu="return false;">
+	<div id="splines">
+		<div id="canvas">
+			<canvas id="myCanvas"></canvas>
+		</div>
+		<div id="controls">
+            <label for="spline">Spline Type: </label>
+			<select id="spline" onchange="modeChanged()">
+			    <option value="beziercurve">Bezier Curve</option>
+				<option value="bezierspline">Bezier Spline</option>
+				<option value="hermitespline">Hermite Spline</option>
+				<option value="linearspline">Linear Spline</option>
+                <option value="cardinalspline">Cardinal Spline</option>
+				<option value="catmullromspline">Catmull-Rom Spline</option>
+			</select>
+			<br>
+			<button onclick="addPoint()">Add Point</button>
+			<button onclick="removePoint()">Remove Point</button>
+			<br>
+			<input id="drawpoints" type="checkbox" checked="true" onclick="toggleDrawPoints()">Draw Points</input>
+			<br>
+			<input type="range" min="3" max = "50" value="25" id="numtsteps" onchange="numberOfTStepsChange()">Number of Steps</input>
+			<br>
+			<input type="range" min="1" max = "5" value="1" id="splinewidth" onchange="splineWidthChange()">Spline Width</input>
+			<h5>Controls: Left click and drag to move points. Pressing add will add a point at the next clicked location, and pressing remove wil remove the next clicked point.</h5>
+			<h5>Note: Clicking away from a point while trying to remove will reset the controls.</h5>
+			<button id="home" onclick="window.location.href='../../../index.html#work';">Back to Home</button>
+		</div>
+	</div>
+	<script src="splines.js"></script>
+</body>
+</html>

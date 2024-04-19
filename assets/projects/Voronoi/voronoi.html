@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<head>
+		<title>Voronoi Diagrams</title>
+		<link rel="stylesheet" href="voronoi.css">
+	</head>
+<body oncontextmenu="return false;" onload="resetSim()">
+	<div id="voronoi">
+		<div id="canvas">
+			<canvas id="myCanvas"></canvas>
+		</div>
+		<div id="controls">
+			<input type="checkbox" onclick="toggleAutoMovingPoints()">Points Automatically Move</input>
+			<br>
+            <input type="checkbox" onclick="toggleDelauneyVisible()">Delauney Visible</input>
+			<br>
+            <input type="checkbox" checked="true" onclick="toggleVoronoiVisible()">Voronoi Visible</input>
+			<br>
+            <input type="checkbox" onclick="toggleCircumcircleVisible()">Circumcircle Visible</input>
+            <br>
+    		<input type="range" min="10" max = "200" value="100" id="numpoints" onchange="resetSim()">Number of Points</input>
+			<br>
+	    	<h5>Controls: Left Click to drag</h5>
+			</h3>
+			<button onclick="window.location.href='../../../index.html#work';">Back to Home</button>
+		</div>
+	</div>
+	<script src="voronoi.js"></script>
+</body>
+</html>
