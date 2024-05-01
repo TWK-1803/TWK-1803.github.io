@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<head>
+		<title>Graphics</title>
+		<link rel="stylesheet" href="graphics.css">
+	</head>
+<body oncontextmenu="return false;">
+	<div id="graphics">
+		<div id="canvas">
+			<canvas id="myCanvas"></canvas>
+		</div>
+		<div id="controls">
+            <label for="select">Select/Reset</label>
+            <div id="select">
+                <button onclick="reset()">Reset</button>
+                <select id="shadingmode" onchange="setMode()">
+                    <option>Wireframe Only</option>
+                    <option>Polygon Shading</option>
+                    <option>Flat Shading</option>
+                    <option>Gouraud Shading</option>
+                    <option>Phong Shading</option>
+                </select>
+            </div>
+            <br>
+            <label for="scale">Scaling</label>
+            <div id="scale">
+                <button onclick="larger()">Larger</button>
+                <button onclick="smaller()">Smaller</button>
+            </div>
+            <br>
+            <label for="translation">Translation</label>
+            <div id="translation">
+                <button onclick="forward()">FW</button>
+                <button onclick="backward()">BW</button>
+                <button onclick="left()">LF</button>
+                <button onclick="right()">RT</button>
+                <button onclick="up()">UP</button>
+                <button onclick="down()">DN</button>
+            </div>
+            <br>
+            <label for="rotation">Rotation</label>
+            <div id="rotation">
+                <button onclick="xPlus()">X+</button>
+                <button onclick="xMinus()">X-</button>
+                <button onclick="yPlus()">Y+</button>
+                <button onclick="yMinus()">Y-</button>
+                <button onclick="zPlus()">Z+</button>
+                <button onclick="zMinus()">Z-</button>
+            </div>
+            <br>
+            <h5>Note: All shaded models were designed to fill in the faces pixel by pixel, so larger/closer objects will take much longer to draw.</h5>
+			</h3>
+			<button id="home" onclick="window.location.href='../../../index.html#work';">Back to Home</button>
+		</div>
+	</div>
+	<script src="graphics.js"></script>
+</body>
+</html>

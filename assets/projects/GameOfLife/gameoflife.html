@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<head>
+		<title>Game of Life</title>
+		<link rel="stylesheet" href="gameoflife.css">
+	</head>
+<body oncontextmenu="return false;">
+	<div id="gameoflife">
+		<div id="canvas">
+			<canvas id="myCanvas"></canvas>
+		</div>
+		<div id="controls">
+            <button id="reset" onclick="resetSim()">Reset</button>
+            <button id="play" onclick="playSimulation()">Play</button>
+            <button id="pause" onclick="pauseSimulation()">Pause</button>
+            <button id="step" onclick="advanceOneStep()">Step</button>
+            <br>
+			<input type="checkbox" id="drawgrid" checked="true" onclick="toggleDrawGrid()">Draw Grid</input>
+            <input type="checkbox" id="wrapping" onclick="toggleWrapping()">Grid Wraps Around</input>
+			<br>
+    		<input type="range" min="100" max = "2000" value="100" id="tickrate" onchange="tickrateChange()">Tick Rate</input>
+            <br>
+            <input type="range" min="3" max = "30" value="3" id="gridscale" onchange="resetSim()">Grid Scale</input>
+			<br>
+	    	<h5>Controls: Left Click to toggle cell when the simulation is not being run.</h5>
+			</h3>
+			<button id="home" onclick="window.location.href='../../../index.html#work';">Back to Home</button>
+		</div>
+	</div>
+	<script src="gameoflife.js"></script>
+</body>
+</html>
