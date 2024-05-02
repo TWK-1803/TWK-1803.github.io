@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<head>
+		<title>Connect 4</title>
+		<link rel="stylesheet" href="connect4.css">
+	</head>
+<body oncontextmenu="return false;">
+	<div id="connect4">
+		<div id="canvas">
+			<canvas id="myCanvas"></canvas>
+		</div>
+		<div id="controls">
+            <button id="reset" onclick="resetSim()">Reset Game</button>
+            <br>
+			<br>
+            <input id="aifirst" type="checkbox" checked="true" onchange="resetSim()"> AI Plays First</input>
+			<br>
+			<p id="feedback"></p>
+			<br>
+			<button id="column1" onclick="play1()">1</button>
+			<button id="column2" onclick="play2()">2</button>
+			<button id="column3" onclick="play3()">3</button>
+			<button id="column4" onclick="play4()">4</button>
+			<button id="column5" onclick="play5()">5</button>
+			<button id="column6" onclick="play6()">6</button>
+			<button id="column7" onclick="play7()">7</button>
+			<h5></h5>
+			<button id="home" onclick="window.location.href='../../../index.html#work';">Back to Home</button>
+		</div>
+	</div>
+	<script src="connect4.js"></script>
+</body>
+</html>
