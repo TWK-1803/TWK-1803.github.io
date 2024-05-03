@@ -88,6 +88,7 @@ class Connect4Gameboard {
         this.board[r][c] = this.playerTokens[this.turnNumber % this.playerTokens.length];
         if (!this.isGameOver()) {
             this.turnNumber++;
+            document.getElementById("feedback").innerHTML = "";
         }
         else {
             disableControls();
@@ -270,7 +271,7 @@ class Connect4AIAgent {
             newboard = this.getBoardWithMove(newboard, this.gameboard.turnNumber, move);
             moveEvalutations[move] = this.alphaBeta(newboard, this.gameboard.turnNumber, this.depth, this.AIIsMaximizing);
         });
-        minIndexes = this.getMinIndexes(moveEvalutations);
+        let minIndexes = this.getMinIndexes(moveEvalutations);
         this.adjustDepth();
         return minIndexes[Math.floor(Math.random() * minIndexes.length)] + 1;
     }
@@ -286,8 +287,8 @@ class Connect4AIAgent {
                     let newboard = deepCopy(board);
                     newboard = this.getBoardWithMove(newboard, turnNumber + 1, move);
                     let evaluation = this.alphaBeta(newboard, turnNumber + 1, depth - 1, !isMaximizingPlayer, alpha, beta);
-                    let maxEvaluation = Math.max(maxEvaluation, evaluation);
-                    alpha = max(alpha, maxEvaluation);
+                    maxEvaluation = Math.max(maxEvaluation, evaluation);
+                    alpha = Math.max(alpha, maxEvaluation);
                     if (beta <= alpha) {
                         return;
                     }
@@ -300,7 +301,7 @@ class Connect4AIAgent {
                     let newboard = deepCopy(board);
                     newboard = this.getBoardWithMove(newboard, turnNumber + 1, move);
                     let evaluation = this.alphaBeta(newboard, turnNumber + 1, depth - 1, !isMaximizingPlayer, alpha, beta);
-                    let minEvaluation = min(minEvaluation, evaluation);
+                    minEvaluation = Math.min(minEvaluation, evaluation);
                     beta = Math.min(beta, minEvaluation);
                     if (beta <= alpha) {
                         return;
@@ -378,6 +379,9 @@ class Connect4AIAgent {
                 if (c == 0 && this.hasToken(board, r, c)) {
                     inARow = 1;
                 }
+                else if (c == 0) {
+                    inARow = 0;
+                }
                 else if (this.hasToken(board, r, c) && board[r][c - 1] != board[r][c]) {
                     if (board[r][c - 1] == "X") {
                         player1Scores.push(inARow);
@@ -419,6 +423,9 @@ class Connect4AIAgent {
             for (let r = 0; r < this.height; r++) {
                 if (r == 0 && this.hasToken(board, r, c)) {
                     inARow = 1;
+                }
+                else if (r == 0) {
+                    inARow = 0;
                 }
                 else if (this.hasToken(board, r, c) && board[r - 1][c] != board[r][c]) {
                     if (board[r - 1][c] == "X") {
@@ -462,7 +469,7 @@ class Connect4AIAgent {
             player1Total += scores[0];
             player2Total += scores[1];
         }
-        endcolumn = 4;
+        let endcolumn = 4;
         for (let i = 1; i < endcolumn; i++) {
             let r = this.height - 1;
             let c = i;
@@ -573,8 +580,8 @@ class Connect4AIAgent {
     }
 
     getMinIndexes(list) {
-        minIndexes = [];
-        minValue = Math.min(...list);
+        let minIndexes = [];
+        let minValue = Math.min(...list);
         for (let i = 0; i < list.length; i++) {
             if (list[i] == minValue) {
                 minIndexes.push(i);
@@ -584,7 +591,7 @@ class Connect4AIAgent {
     }
 
     adjustDepth() {
-        if (this.gameboard.turnNumber >= 10 && this.gameboard.turnNumber % 2 == 0) {
+        if (this.gameboard.turnNumber >= 20 && this.gameboard.turnNumber % 2 == 0) {
             this.depth++;
         }
     }
@@ -852,65 +859,84 @@ function deepCopy(inputArray) {
 	return copy;
 }
 
+function playAIMove() {
+    document.getElementById("feedback").innerHTML = "AI Playing...";
+    board.dropInColumn(ai.getMove() - 1);
+    drawBoard();
+    disableCols();
+}
+
 function play1() {
     board.dropInColumn(0);
     drawBoard();
-    if (!board.getValidMoves().includes(1)) {
-        disableElement("column1");
+    disableCols();
+    if (!board.isGameOver()) {
+        playAIMove();
     }
 }
 
 function play2() {
     board.dropInColumn(1);
     drawBoard();
-    if (!board.getValidMoves().includes(2)) {
-        disableElement("column2");
+    disableCols();
+    if (!board.isGameOver()) {
+        playAIMove();
     }
 }
 
 function play3() {
     board.dropInColumn(2);
     drawBoard();
-    if (!board.getValidMoves().includes(3)) {
-        disableElement("column3");
+    disableCols();
+    if (!board.isGameOver()) {
+        playAIMove();
     }
 }
 
 function play4() {
     board.dropInColumn(3);
     drawBoard();
-    if (!board.getValidMoves().includes(4)) {
-        disableElement("column4");
+    disableCols();
+    if (!board.isGameOver()) {
+        playAIMove();
     }
 }
 
 function play5() {
     board.dropInColumn(4);
     drawBoard();
-    if (!board.getValidMoves().includes(5)) {
-        disableElement("column5");
+    disableCols();
+    if (!board.isGameOver()) {
+        playAIMove();
     }
 }
 
 function play6() {
     board.dropInColumn(5);
     drawBoard();
-    if (!board.getValidMoves().includes(6)) {
-        disableElement("column6");
+    disableCols();
+    if (!board.isGameOver()) {
+        playAIMove();
     }
 }
 
 function play7() {
     board.dropInColumn(6);
     drawBoard();
-    if (!board.getValidMoves().includes(7)) {
-        disableElement("column7");
+    disableCols();
+    if (!board.isGameOver()) {
+        playAIMove();
     }
 }
 
-function disableElement(idname) {
-    let elem = document.getElementById(idname);
-    elem.disabled = true;
+function disableCols() {
+    let name = "column";
+    let validMoves = board.getValidMoves();
+    for(let i = 1; i < 8; i++) {
+        if (!validMoves.includes(i)) {
+            document.getElementById(name + "" + i).disabled = true;
+        }
+    }
 }
 
 function disableControls() {
@@ -938,9 +964,13 @@ function resetSim() {
     width = canvasDiv.clientWidth;
     height = canvasDiv.clientHeight;
 
-    let aiFirst = document.getElementById("aifirst").checked ? 0 : 1;
+    let aiFirst = document.getElementById("aifirst").checked ? 2 : 1;
     board = new Connect4Gameboard();
     ai = new Connect4AIAgent(board, aiFirst);
+
+    if (aiFirst == 2) {
+        playAIMove();
+    }
 
     enableControls();
 
