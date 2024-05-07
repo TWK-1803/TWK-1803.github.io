@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<head>
+		<title>Wave Function Collapse</title>
+		<link rel="stylesheet" href="wfc.css">
+	</head>
+<body oncontextmenu="return false;">
+	<div id="wfc">
+		<div id="canvas">
+			<canvas id="myCanvas"></canvas>
+		</div>
+		<div id="controls">
+            <input type="file" id="imageLoader" accept="image/*">
+			<br>
+			<input id="tilesize" type="number" value=10 onchange="tilesizeChange()"> Tile size in pixels</input>
+			<br>
+			<p id="feedback"></p>
+			<br>
+			<a href="../../../images/bigknots_1.png" download>Big Knots 1</a>
+			<br>
+			<a href="../../../images/bigknots_1.png" download>Big Knots 2</a>
+			<br>
+			<a href="../../../images/mediumknots_1.png" download>Medium Knots 1</a>
+			<br>
+			<a href="../../../images/mediumknots_1.png" download>Medium Knots 2</a>
+			<br>
+			<a href="../../../images/mediumknots_1.png" download>Medium Knots 3</a>
+			<br>
+			<a href="../../../images/smallknots_1.png" download>Small Knots 1</a>
+			<br>
+			<a href="../../../images/smallknots_1.png" download>Small Knots 2</a>
+			<br>
+			<a href="../../../images/smallknots_1.png" download>Small Knots 3</a>
+			<br>
+			<a href="../../../images/smallknots_1.png" download>Small Knots 4</a>
+			<br>
+            <h5>Note: Above are some curated images I have tested and know work well with the algorithm. Some do produce flashes, so take care.</h5>
+			<button id="home" onclick="window.location.href='../../../index.html#work';">Back to Home</button>
+            <canvas id="loadedimg" hidden="true"></canvas> 
+		</div>
+	</div>
+	<script src="wfc.js"></script>
+</body>
+</html>
