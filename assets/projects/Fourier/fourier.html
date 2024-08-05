@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<head>
+		<title>Game of Life</title>
+		<link rel="stylesheet" href="fourier.css">
+	</head>
+<body oncontextmenu="return false;">
+	<div id="fourier">
+		<div id="canvas">
+			<canvas id="myCanvas"></canvas>
+		</div>
+		<div id="controls">
+            <button id="reset" onclick="resetSim()">Reset</button>
+            <br>
+			<input type="checkbox" id="drawpath" checked="true" onclick="toggleDrawPath()">Draw Path</input>
+            <input type="checkbox" id="drawpoints" checked="true" onclick="toggleDrawPoints()">Draw Points</input>
+			<input type="checkbox" id="drawcircles" checked="true" onclick="toggleDrawCircles()">Draw Circles</input>
+			<br>
+    		<input class="numberwidth" type="number" value="3" id="scale" onchange="scaleChange()"> Path Scale</input>
+            <br>
+            <input class="numberwidth" type="number" value="4" id="circles" onchange="circlesChange()"> Number of Circles</input>
+			<br>
+			<h5>Note: Though the path is hard coded here, this method works with any time sorted, periodic list of complex points.</h5>
+			<button id="home" onclick="window.location.href='../../../index.html#work';">Back to Home</button>
+		</div>
+	</div>
+	<script src="fourier.js"></script>
+</body>
+</html>
