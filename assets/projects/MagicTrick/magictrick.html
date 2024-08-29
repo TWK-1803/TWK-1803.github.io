@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<head>
+		<title>Card Suits on Canvas</title>
+		<link rel="stylesheet" href="magictrick.css">
+	</head>
+<body oncontextmenu="return false;">
+	<div id="magicTrick">
+		<div id="canvas">
+			<canvas id="myCanvas"></canvas>
+		</div>
+		<div id="controls">
+			<button id="reset" onclick="reset()">Reset Trick</button>
+            <br>
+            <p id="feedback">Pick a card and select the column it is in below.</p>
+            <button id="column1" onclick="pick1()">1</button>
+			<button id="column2" onclick="pick2()">2</button>
+			<button id="column3" onclick="pick3()">3</button>
+			<br>
+			<br>
+			<br>
+			<button id="home" onclick="window.location.href='../../../index.html#work';">Back to Home</button>
+		</div>
+	</div>
+	<script src="magictrick.js"></script>
+</body>
+</html>
