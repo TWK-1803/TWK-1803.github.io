@@ -36,6 +36,12 @@ class Vector2 {
     rotate(theta) {
         return new Vector2(this.x * Math.cos(theta) - this.y * Math.sin(theta), this.x * Math.sin(theta) + this.y * Math.cos(theta));
     };
+    limit(l) {
+        if (this.length() > l) {
+            return this.normalize().mul(l)
+        }
+        return this
+    }
     equals(v) {
         return this.x == v.x && this.y == v.y;
     };

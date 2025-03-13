@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<head>
+		<title>Boids</title>
+		<link rel="stylesheet" href="boids.css">
+	</head>
+<body oncontextmenu="return false;">
+	<div id="boids">
+		<div id="canvas">
+			<canvas id="myCanvas"></canvas>
+		</div>
+		<div id="controls">
+            <label for="simType">Number of Flocks: </label>
+            <select id="simType" onchange="resetSim()">
+                <option value="one">1</option>
+                <option value="three">3</option>
+            </select>
+            <br>
+            <br>
+            <div id="boidsSlider">
+				<input type="range" min="25" max = "1500" value="250" id="numBoids" onchange="updateNumBoids()">Number of Boids</input>
+			</div>
+            <div id="sepSlider">
+				<input type="range" min="0" max = "50" value="20" id="sepConstant" onchange="updateSepConstant()">Seperation Strength</input>
+			</div>
+            <div id="alignSlider">
+				<input type="range" min="0" max = "50" value="10" id="alignConstant" onchange="updateAlignConstant()">Alignment Strength</input>
+			</div>
+            <div id="cohSlider">
+				<input type="range" min="0" max = "50" value="10" id="cohConstant" onchange="updateCohConstant()">Cohesion Strength</input>
+			</div>
+            <div id="mouseSlider">
+				<input type="range" min="0" max = "50" value="50" id="mouseAvoidConstant" onchange="updateMouseAvoidConstant()">Mouse Avoidance Strength</input>
+			</div>
+            <br>
+			<h5>Controls: Hold Left click to repel boids away from the mouse.</h5>
+			<button onclick="window.location.href='../../../index.html#work';">Back to Home</button>
+		</div>
+	</div>
+    <script src="../../utils/vector2.js"></script>
+	<script src="boids.js"></script>
+</body>
+</html>
