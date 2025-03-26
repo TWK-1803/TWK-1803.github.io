@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<head>
+		<title>Arcball Camera</title>
+		<link rel="stylesheet" href="arcball.css">
+	</head>
+<body oncontextmenu="return false;">
+	<div id="arcball">
+		<div id="canvas">
+			<canvas id="myCanvas"></canvas>
+		</div>
+		<div id="controls">
+			<label for="shape">Shape </label>
+            <select id="shape" onchange="reset()">
+				<option value="tetrahedron">Tetrahedron</option>
+				<option value="cube">Cube</option>
+				<option value="octahedron">Octahedron</option>
+				<option value="dodecahedron">Dodecahedron</option>
+				<option value="icosahedron">Icosahedron</option>
+            </select>
+            <h5>Controls: Hold Left click and move mouse to rotate object</h5>
+			<button onclick="window.location.href='../../../index.html#work';">Back to Home</button>
+		</div>
+	</div>
+	<script src="arcball.js"></script>
+</body>
+</html>
