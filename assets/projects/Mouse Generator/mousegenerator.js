@@ -127,8 +127,8 @@ function generateAttribute() {
 function generateMice() {
     textarea.value = "";
     for (let n = 0; n < numMice; n++) {
-        let birthname_roll = randint(0, 99);
-        let matriname_roll = randint(0, 19);
+        let birthname_roll = randint(1, 100);
+        let matriname_roll = randint(1, 20);
         let name = lookupName(birthname_roll, matriname_roll);
         let gender = birthname_roll > 50 ? "M" : "F";
         let attributes = [generateAttribute(), generateAttribute(), generateAttribute()].join(" ");
