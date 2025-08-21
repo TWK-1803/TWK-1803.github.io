@@ -11,6 +11,13 @@
 			<canvas id="myCanvas"></canvas>
 		</div>
 		<div id="controls">
+			<label for="simType">Path: </label>
+			<select id="simType" onchange="resetSim()">
+			    <option value="note">Note</option>
+				<option value="dog">Dog</option>
+			</select>
+            <br>
+			<br>
             <button id="reset" onclick="resetSim()">Reset</button>
             <br>
 			<input type="checkbox" id="drawpath" checked="true" onclick="toggleDrawPath()">Draw Path</input>
