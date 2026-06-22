@@ -17,7 +17,11 @@
     overflow-y: scroll;  
 }
 
-#mnumMice{
+#numMice{
+    width: 50px;
+}
+
+#levelMice{
     width: 50px;
 }
 

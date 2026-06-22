@@ -68,8 +68,10 @@ const BACKGROUNDS =   [[["Test subject","Spell: Magic missle","Lead coat (Heavy 
 
 
 const randint = (min, max) => { return Math.floor(Math.random() * (max+1-min) + min); }
+const clamp = (x, min, max) => { return Math.min(max, Math.max(x, min)); }
 const textarea = document.getElementById("mice");
 var numMice = 1;
+var levelMice = 1
 
 function generateName() {
     return BIRTHNAMES[randint(0,99)] + " " + MATRINAMES[randint(0,19)];
@@ -121,7 +123,21 @@ function lookupBricaBrac(d6, d8) {
 function generateAttribute() {
     let temparr = [randint(1,6),randint(1,6),randint(1,6)];
     temparr.sort();
-    return (temparr[1] + temparr[2]) + "";
+    return temparr[1] + temparr[2];
+}
+
+function levelUpMouse(hp, attributeArr){
+    for (let i = 1; i < levelMice; i++) {
+        for (let j = 0; j < 3; j++) {
+            attributeArr[j] += randint(1, 20) > attributeArr[j] ? 1 : 0;
+        }
+        let total = 0
+        for (let j = 0; j < clamp(i + 1, 2, 4); j++) {
+            total += randint(1, 6);
+        }
+        hp = total > hp ? total : hp + 1;
+    }
+    return [hp, attributeArr];
 }
 
 function generateMice() {
@@ -131,7 +147,7 @@ function generateMice() {
         let matriname_roll = randint(1, 20);
         let name = lookupName(birthname_roll, matriname_roll);
         let gender = birthname_roll > 50 ? "M" : "F";
-        let attributes = [generateAttribute(), generateAttribute(), generateAttribute()].join(" ");
+        let attributeArr = [generateAttribute(), generateAttribute(), generateAttribute()];
         let hp = randint(1,6);
         let pips = randint(1,6);
         let background = lookupBackground(hp, pips);
@@ -141,7 +157,11 @@ function generateMice() {
         let coat = generateCoat();
         let physicaldetail = generateDetail();
         let bricabrac = generateBricaBrac();
-        textarea.value += ("Mouse # {0}\n--------------\nName: {1} ({2})\nAttributes: {3}\nHP: {4}\nPips: {5}\nEquiment: {6}\nBric-a-brac: {7}\nBackground: {8}\nBirthsign and Disposition: {9}\nCoat: {10}\nPhysical Details: {11}\n\n".format(n+1,name,gender,attributes,hp,pips,equipment,bricabrac,occupation,birthsign_disposition,coat,physicaldetail))
+        let temp = levelUpMouse(hp, attributeArr);
+        hp = temp[0];
+        let attributes = temp[1].join(" ");
+        let grit = levelMice >= 5 ? 3 : levelMice >= 3 && levelMice < 5 ? 2 : levelMice >= 2 && levelMice < 3 ? 1 : 0; 
+        textarea.value += ("Mouse # {0}\n--------------\nName: {1} ({2}) Level: {3} Grit: {4}\nAttributes: {5}\nHP: {6}\nPips: {7}\nEquiment: {8}\nBric-a-brac: {9}\nBackground: {10}\nBirthsign and Disposition: {11}\nCoat: {12}\nPhysical Details: {13}\n\n".format(n+1,name,gender,levelMice,grit,attributes,hp,pips,equipment,bricabrac,occupation,birthsign_disposition,coat,physicaldetail))
     }
 }
 
@@ -158,6 +178,22 @@ function numMiceChange() {
     }
     else{
         numMice = parseInt(t, 10);
+    }
+}
+
+function levelMiceChange() {
+    t = document.getElementById("levelMice").value;
+
+    if (t == "" || t < 1){
+        levelMice = 1;
+        document.getElementById("levelMice").value = 1;
+    }
+    else if (t > 5){
+        levelMice = 20;
+        document.getElementById("levelMice").value = 5;
+    }
+    else{
+        levelMice = parseInt(t, 10);
     }
 }
 
