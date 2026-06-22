@@ -63,7 +63,7 @@ const BACKGROUNDS =   [[["Test subject","Spell: Magic missle","Lead coat (Heavy 
                         ["Trap thief","Block of cheese","Glue"], ["Vagabond","Tent","Treasure map (dubious)"],
                         ["Grain farmer","Spear (Heavy, d10)","Whistle"], ["Message runner","Bedroll","Documents (sealed)"]],
                        [["Troubador","Musical instrument","Disguise kit"], ["Gambler","Set of loaded dice","Mirror"],
-                        ["Sap tapper","Bucket","Wodden spikes"], ["Bee keeper","Jar of honey","Net"],
+                        ["Sap tapper","Bucket","Wooden spikes"], ["Bee keeper","Jar of honey","Net"],
                         ["Librarian","Scrap of obscure book","Quill & ink"], ["Pauper noblemouse","Felt hat","Perfume"]]];
 
 
