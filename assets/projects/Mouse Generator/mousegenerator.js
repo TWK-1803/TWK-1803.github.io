@@ -161,7 +161,7 @@ function generateMice() {
         hp = temp[0];
         let attributes = temp[1].join(" ");
         let grit = levelMice >= 5 ? 3 : levelMice >= 3 && levelMice < 5 ? 2 : levelMice >= 2 && levelMice < 3 ? 1 : 0; 
-        textarea.value += ("Mouse # {0}\n--------------\nName: {1} ({2}) Level: {3} Grit: {4}\nAttributes: {5}\nHP: {6}\nPips: {7}\nEquiment: {8}\nBric-a-brac: {9}\nBackground: {10}\nBirthsign and Disposition: {11}\nCoat: {12}\nPhysical Details: {13}\n\n".format(n+1,name,gender,levelMice,grit,attributes,hp,pips,equipment,bricabrac,occupation,birthsign_disposition,coat,physicaldetail))
+        textarea.value += ("Mouse # {0}\n--------------\nName: {1} ({2}) Level: {3} Grit: {4}\nAttributes: {5}\nHP: {6}\nPips: {7}\nEquipment: {8}\nBric-a-brac: {9}\nBackground: {10}\nBirthsign and Disposition: {11}\nCoat: {12}\nPhysical Details: {13}\n\n".format(n+1,name,gender,levelMice,grit,attributes,hp,pips,equipment,bricabrac,occupation,birthsign_disposition,coat,physicaldetail))
     }
 }
 
@@ -189,7 +189,7 @@ function levelMiceChange() {
         document.getElementById("levelMice").value = 1;
     }
     else if (t > 5){
-        levelMice = 20;
+        levelMice = 5;
         document.getElementById("levelMice").value = 5;
     }
     else{
